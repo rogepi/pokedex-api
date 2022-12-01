@@ -10,7 +10,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build-and-deploy:
+  push-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -36,6 +36,7 @@ jobs:
           pnpm i
           npx prisma generate
           pnpm build
-          pm2 start dist/index.js
+          pm2 delete pokedexApi
+          pm2 start --name pokedexApi dist/index.js
         
         
