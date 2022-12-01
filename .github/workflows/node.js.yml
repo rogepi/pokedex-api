@@ -31,7 +31,7 @@ jobs:
         connect_timeout: 60s
         scp: |
           ./* => /home/pokedex-api
-        last_ssh: |
+        remote: |
           cd /home/pokedex-api
           pnpm i
           npx prisma generate
