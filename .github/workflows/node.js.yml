@@ -21,12 +21,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
-    
-    - name: Build
-      run: |
-        npm install
-        npx prisma generate
-        npm run build
 
     - name: Deploy
       uses: cross-the-world/scp-pipeline@master
