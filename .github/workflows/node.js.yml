@@ -10,8 +10,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -28,26 +27,21 @@ jobs:
         npm install
         npx prisma generate
         npm run build
-        
+
     - name: Deploy
       uses: cross-the-world/scp-pipeline@master
       with:
         host: ${{ secrets.HOST }}
         user: ${{ secrets.USER }}
         pass: ${{ secrets.PASSWORD }}
-        connect_timeout: 10s
-        local: './dist'
-        remote: /home/pokedex-api/dist
-        
-     - name: Executing remote ssh commands
-       uses: appleboy/ssh-action@master
-       with:
-         host: ${{ secrets.HOST }}
-         user: ${{ secrets.USER }}
-         password: ${{ secrets.PASSWORD }}
-       script: |
-         cd /home/pokedex-api
-         pm2 delete pokedexAPi
-         pm2 start --name pokedexApi npm -- run start
+        connect_timeout: 60s
+        scp: |
+          ./* => /home/pokedex-api
+        last_ssh: |
+          cd /home/pokedex-api
+          pnpm i
+          npx prisma generate
+          pnpm build
+          pm2 start dist/index.js
         
         
