@@ -4,6 +4,10 @@ import fastify from 'fastify'
 const prisma = new PrismaClient()
 const app = fastify({ logger: true })
 
+app.get('/',()=>{
+  return "Server is running"
+})
+
 app.get('/pokemon', async(req,res)=>{
   const data = await prisma.pw_pokemon.findMany()
   return data
