@@ -9,7 +9,7 @@ app.get('/pokemon', async(req,res)=>{
   return data
 })
 
-app.listen({port:8080,host: 'localhost'},(err)=>{
+app.listen({port:8080,host: '::},(err)=>{
   if(err) throw err
   console.log('Server is running')
 })
