@@ -1,0 +1,189 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./pokemon_wiki.db"
+}
+
+model pw_ability {
+  id         Int      @id @default(autoincrement())
+  nameZh     String   @default("")
+  nameJa     String   @default("")
+  nameEn     String   @default("")
+  effect     String   @default("")
+  generation Int      @default(0)
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_ability_detail {
+  id         Int      @id @default(autoincrement())
+  nameZh     String   @default("")
+  desc       String   @default("")
+  effect     String   @default("")
+  pokemons   String   @default("")
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_item {
+  id         Int      @id @default(autoincrement())
+  type       String   @default("")
+  imgUrl     String   @default("")
+  nameZh     String   @default("")
+  nameJa     String   @default("")
+  nameEn     String   @default("")
+  desc       String   @default("")
+  generation Int      @default(0)
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_move {
+  id         Int      @id @default(autoincrement())
+  nameZh     String   @default("")
+  nameJa     String   @default("")
+  nameEn     String   @default("")
+  type       String   @default("")
+  category   String   @default("")
+  power      String   @default("")
+  accuracy   String   @default("")
+  pp         String   @default("")
+  generation Int      @default(0)
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_move_detail {
+  id         Int      @id @default(autoincrement())
+  nameZh     String   @default("")
+  desc       String   @default("")
+  imgUrl     String   @default("")
+  notes      String   @default("")
+  scope      String   @default("")
+  effect     String   @default("")
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_nature {
+  id             Int      @id @default(autoincrement())
+  nameZh         String   @default("")
+  nameJa         String   @default("")
+  nameEn         String   @default("")
+  increasedStat  String   @default("")
+  decreasedStat  String   @default("")
+  favoriteFlavor String   @default("")
+  dislikedFlavor String   @default("")
+  createTime     DateTime @default(now())
+  modifyTime     DateTime @default(now())
+}
+
+model pw_pokemon {
+  id         Int      @id @default(autoincrement())
+  index      Int      @default(0)
+  nameZh     String   @default("")
+  nameJa     String   @default("")
+  nameEn     String   @default("")
+  imgUrl     String   @default("")
+  type1      String   @default("")
+  type2      String   @default("")
+  generation Int      @default(0)
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_pokemon_ability {
+  id          Int      @id @default(autoincrement())
+  index       Int      @default(0)
+  nameZh      String   @default("")
+  type1       String   @default("")
+  type2       String   @default("")
+  ability1    String   @default("")
+  ability2    String   @default("")
+  abilityHide String   @default("")
+  generation  Int      @default(0)
+  createTime  DateTime @default(now())
+  modifyTime  DateTime @default(now())
+}
+
+model pw_pokemon_detail {
+  id          Int      @id @default(autoincrement())
+  index       Int      @default(0)
+  imgUrl      String   @default("")
+  type        String   @default("")
+  category    String   @default("")
+  ability     String   @default("")
+  height      String   @default("")
+  weight      String   @default("")
+  bodyStyle   String   @default("")
+  catchRate   String   @default("")
+  genderRatio String   @default("")
+  eggGroup1   String   @default("")
+  eggGroup2   String   @default("")
+  hatchTime   String   @default("")
+  effortValue String   @default("")
+  createTime  DateTime @default(now())
+  modifyTime  DateTime @default(now())
+}
+
+model pw_pokemon_detail_base_stat {
+  id         Int      @id @default(autoincrement())
+  index      Int      @default(0)
+  hp         Int      @default(0)
+  attack     Int      @default(0)
+  defense    Int      @default(0)
+  spAttack   Int      @default(0)
+  spDefense  Int      @default(0)
+  speed      Int      @default(0)
+  total      Int      @default(0)
+  average    Float    @default(0)
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_pokemon_detail_learn_set_by_breeding {
+  id         Int      @id @default(autoincrement())
+  index      Int      @default(0)
+  parent     String   @default("")
+  move       String   @default("")
+  type       String   @default("")
+  category   String   @default("")
+  power      String   @default("")
+  accuracy   String   @default("")
+  pp         String   @default("")
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_pokemon_detail_learn_set_by_leveling_up {
+  id         Int      @id @default(autoincrement())
+  index      Int      @default(0)
+  level1     String   @default("")
+  level2     String   @default("")
+  move       String   @default("")
+  type       String   @default("")
+  category   String   @default("")
+  power      String   @default("")
+  accuracy   String   @default("")
+  pp         String   @default("")
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+}
+
+model pw_pokemon_detail_learn_set_by_technical_machine {
+  id               Int      @id @default(autoincrement())
+  index            Int      @default(0)
+  imgUrl           String   @default("")
+  technicalMachine String   @default("")
+  move             String   @default("")
+  type             String   @default("")
+  category         String   @default("")
+  power            String   @default("")
+  accuracy         String   @default("")
+  pp               String   @default("")
+  createTime       DateTime @default(now())
+  modifyTime       DateTime @default(now())
+}
