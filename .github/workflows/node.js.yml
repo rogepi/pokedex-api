@@ -17,13 +17,8 @@ jobs:
     - name: CheckOut
       uses: actions/checkout@v3
 
-    - name: Use Node.js 18
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
     - name: Deploy
-      uses: cross-the-world/scp-pipeline@master
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
       with:
         host: ${{ secrets.HOST }}
         user: ${{ secrets.USER }}
